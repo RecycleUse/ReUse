@@ -1,4 +1,4 @@
-package com.sesac.reuse.item.model.category;
+package com.sesac.reuse.domain;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,26 +9,22 @@ import java.util.List;
 
 @Entity
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor
 public class RecycleCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int category_id;
+    private Integer id;
+
     private String name;
+
+    //TODO: cascade 제약조건 추가
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "parent")
-//    @Column(name = "mainCategory")
+    @JoinColumn(name = "parent_id")
     private RecycleCategory parent;
+
     @OneToMany(mappedBy = "parent")
     private List<RecycleCategory> subCategories = new ArrayList<>();
 
-    public RecycleCategory(final String name) {
-        this.name = name;
-    }
+    @OneToMany(mappedBy = "recycleCategory")
+    List<Item> item;
 
-    public RecycleCategory(final String name, final RecycleCategory parent) {
-        this.name = name;
-        this.parent = parent;
-    }
 }
