@@ -1,6 +1,8 @@
+/*
 package com.sesac.reuse.category.domain;
 
 
+import com.sesac.reuse.Item.domain.Item;
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,8 +14,8 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name ="category")
-public class Category {
+@Table(name ="RecycleCategory")
+public class RecycleCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,11 +25,17 @@ public class Category {
 
     @ManyToOne
     @JoinColumn(name = "parent_id")
-    private Category parent;
+    private RecycleCategory parent;
 
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
-    private List<Category> subCategories = new ArrayList<>();
+    private List<RecycleCategory> subCategories = new ArrayList<>();
 
+
+    @OneToMany(mappedBy = "RecycleCategory")
+    List<Item> item;
+
+}
+*/
 /*
 * 이 클래스는 categories 테이블을 표현합니다.
 *  @Entity 어노테이션은 이 클래스가 JPA 엔티티임을 나타냅니다.
@@ -47,4 +55,3 @@ subCategories 필드는 하위 카테고리의 목록을 나타냅니다.
 *  이 속성의 값은 연관 관계의 주인이 가지고 있는 필드의 이름입니다.
 * cascade 속성은 부모 엔티티를 저장하거나 삭제할 때 자식 엔티티도 함께 저장하거나 삭제해야 함을 나타냅니다.
 * */
-}

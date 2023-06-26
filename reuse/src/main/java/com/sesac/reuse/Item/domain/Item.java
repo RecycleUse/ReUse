@@ -1,7 +1,8 @@
+/*
 package com.sesac.reuse.Item.domain;
 
 
-import com.sesac.reuse.category.domain.Category;
+import com.sesac.reuse.category.domain.RecycleCategory;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -10,6 +11,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter @Setter @RequiredArgsConstructor
+@Table(name = "item")
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -24,7 +26,11 @@ public class Item {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
-    private Category category;
+    private RecycleCategory category;
+
+    @ManyToOne
+    @JoinColumn(name = "recycle_category_id")
+    private RecycleCategory recycleCategory;
 
 //
 //   *     종이 - 신문, 책자*노트, 상자류
@@ -40,3 +46,4 @@ public class Item {
 
 
 }
+*/
