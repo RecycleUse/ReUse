@@ -3,17 +3,18 @@ package com.sesac.reuse.domain;
 import lombok.Getter;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Getter
-public class Privilege {
+public class Code {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    String name;
+    @ManyToOne
+    @JoinColumn(name = "type_id")
+    Code type;
 
-    @OneToMany(mappedBy = "privilege")
-    List<Member> members;
+    String value;
+
 }
